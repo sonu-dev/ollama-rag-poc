@@ -21,6 +21,11 @@ namespace OllamRagPOC.Services
 
         public async Task CreateCollection()
         {
+            if (await _client.CollectionExistsAsync("documents"))
+            {
+                return;
+            }
+
             await _client.CreateCollectionAsync(
                 "documents",
                 new VectorParams

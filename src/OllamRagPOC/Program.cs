@@ -24,6 +24,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+await app.Services.GetRequiredService<IQdrantService>().CreateCollection();
+
 app.Use(async (context, next) =>
 {
     try
